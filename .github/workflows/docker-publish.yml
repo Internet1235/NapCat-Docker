@@ -25,16 +25,17 @@ jobs:
         env:
           DOCKER_REPO: swr.ap-southeast-3.myhuaweicloud.com/container-repositories/napcat-docker
           GITHUB_REPO: NapNeko/NapCatQQ
-        run: |
-          TAG=v4.15.0
-          docker buildx build \
-            --output "type=image,push=true" \
-            --platform linux/amd64,linux/arm64 \
-            --tag ${DOCKER_REPO}:$TAG \
-            --tag ${DOCKER_REPO}:latest \
-            --file ./Dockerfile \
-            --provenance=false \
-            --sbom=false \
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ${DOCKER_REPO}:$TAG
+            ${DOCKER_REPO}:latest
+          provenance: false
+          sbom: false
             .
       - name: Docker Hub logout
         if: always()
