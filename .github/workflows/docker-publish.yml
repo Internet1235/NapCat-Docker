@@ -17,13 +17,13 @@ jobs:
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
-          registry: swr.cn-south-1.myhuaweicloud.com
+          registry: swr.ap-southeast-3.myhuaweicloud.com
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       # Fork from https://github.com/koishijs/boilerplate/blob/master/.github/workflows/docker.yml
       - name: Run buildx and push
         env:
-          DOCKER_REPO: swr.cn-south-1.myhuaweicloud.com/container-repositories/napcat-docker
+          DOCKER_REPO: swr.ap-southeast-3.myhuaweicloud.com/container-repositories/napcat-docker
           GITHUB_REPO: NapNeko/NapCatQQ
         run: |
           TAG=v4.15.0
