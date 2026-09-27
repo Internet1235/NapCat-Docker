@@ -37,7 +37,7 @@ jobs:
             ${{ env.DOCKER_REPO }}:latest
           provenance: false
           sbom: false
-            .
+
       - name: Docker Hub logout
         if: always()
         run: docker logout
